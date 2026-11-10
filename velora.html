@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VELORA – The World of Luxury Watches</title>
+<meta name="description" content="Discover timeless designs, explore premium timepieces, and find the perfect watch to match your style.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f0e6;--surface:#fffdf8;--ink:#12261f;--muted:#5d6e66;--gold:#9a7a38;--line:#d9d2bf;--dial:#12261f;--on-gold:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1f19;--surface:#122a22;--ink:#f1ebdc;--muted:#9bb0a6;--gold:#cfae6a;--line:#25433a;--dial:#0a1814;--on-gold:#0d1f19;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Jost,system-ui,sans-serif}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0;line-height:1.1}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font-family:"Cormorant Garamond",Georgia,serif;font-size:26px;letter-spacing:.32em;font-weight:600}
+nav a{color:var(--muted);text-decoration:none;margin-left:20px;font-size:15px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;padding:28px 0 56px}
+.hero h1{font-size:clamp(40px,7vw,72px);margin-bottom:16px}
+.hero p{color:var(--muted);max-width:44ch;margin:0 0 24px}
+.btn{display:inline-block;background:var(--gold);color:var(--on-gold);border:0;padding:12px 24px;font:500 15px Jost,sans-serif;cursor:pointer;border-radius:2px;text-decoration:none}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+#dial{width:100%;max-width:360px;justify-self:center}
+section{padding:36px 0}
+h2{font-size:36px;margin-bottom:22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);display:flex;flex-direction:column}
+.card .img{aspect-ratio:1;background:var(--dial);display:grid;place-items:center;overflow:hidden}
+.card img{width:100%;height:100%;object-fit:cover}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.brand{color:var(--gold);font-size:14px}
+.card h3{font-size:24px}
+.card p{margin:0;color:var(--muted);font-size:14px;flex:1}
+.price{font-family:"Cormorant Garamond",Georgia,serif;font-size:26px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px}
+.sold{color:var(--muted);font-style:italic}
+.panel{background:var(--surface);border:1px solid var(--line);padding:22px}
+form{display:grid;gap:12px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:grid;gap:4px;font-size:14px;color:var(--muted)}
+input,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);padding:10px;border-radius:2px;width:100%}
+textarea.out{font-family:ui-monospace,monospace;font-size:13px}
+.note{color:var(--muted);font-size:14px;margin:0 0 14px}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);border:1px solid var(--line);padding:28px 16px;margin:0}
+.req{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.req:last-child{border-bottom:0}
+.req small{color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:14px;text-align:center}
+@media(max-width:700px){.hero{grid-template-columns:1fr}#dial{max-width:260px;order:-1}.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="logo">VELORA</div><nav><a href="#collection">Collection</a><a href="#sell">Sell a watch</a></nav></header>
+
+<div class="hero">
+<div>
+<h1>Where elegance meets every second.</h1>
+<p>Discover timeless designs, explore premium timepieces, and find the perfect watch to match your style.</p>
+<a class="btn" href="#collection">Browse the collection</a>
+</div>
+<svg id="dial" viewBox="0 0 200 200" role="img" aria-label="Live analog watch showing the current time">
+<circle cx="100" cy="100" r="96" fill="none" stroke="var(--gold)" stroke-width="3"/>
+<circle cx="100" cy="100" r="90" fill="var(--dial)"/>
+<g id="ticks" stroke="var(--gold)"></g>
+<text x="100" y="62" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="11" letter-spacing="3" fill="var(--gold)">VELORA</text>
+<line id="hh" x1="100" y1="100" x2="100" y2="60" stroke="#f1ebdc" stroke-width="4" stroke-linecap="round"/>
+<line id="mh" x1="100" y1="100" x2="100" y2="38" stroke="#f1ebdc" stroke-width="2.5" stroke-linecap="round"/>
+<line id="sh" x1="100" y1="112" x2="100" y2="30" stroke="var(--gold)" stroke-width="1.2"/>
+<circle cx="100" cy="100" r="4" fill="var(--gold)"/>
+</svg>
+</div>
+
+<section id="collection">
+<h2>The collection</h2>
+<div id="list" class="grid"></div>
+</section>
+
+<section id="sell">
+<h2>Sell a watch</h2>
+<div class="panel">
+<form id="addForm">
+<label>Brand<input name="brand" required></label>
+<label>Model name<input name="name" required></label>
+<label>Price (USD)<input name="price" type="number" min="0" required></label>
+<label>Photo<input name="photo" type="file" accept="image/*"></label>
+<label>Description<textarea name="desc" rows="3"></textarea></label>
+<div><button class="btn" type="submit">Add to collection</button></div>
+<p class="note" id="msg" role="status" style="margin:0"></p>
+</form>
+</div>
+</section>
+
+<section id="requests">
+<h2>Buy requests</h2>
+<div id="reqs" class="panel"></div>
+</section>
+</div>
+
+<footer>© VELORA · Luxury watches</footer>
+
+<script>
+/* ===== Page code (no need to edit below) ===== */
+(function(){
+var t=document.getElementById('ticks'),h='';
+for(var i=0;i<60;i++){var big=i%5===0,a=i*6*Math.PI/180,r1=big?76:81,r2=85;
+h+='<line x1="'+(100+r1*Math.sin(a)).toFixed(2)+'" y1="'+(100-r1*Math.cos(a)).toFixed(2)+'" x2="'+(100+r2*Math.sin(a)).toFixed(2)+'" y2="'+(100-r2*Math.cos(a)).toFixed(2)+'" stroke-width="'+(big?2:.6)+'"/>';}
+t.innerHTML=h;
+function tick(){var d=new Date(),s=d.getSeconds(),m=d.getMinutes()+s/60,hr=(d.getHours()%12)+m/60;
+document.getElementById('hh').setAttribute('transform','rotate('+hr*30+' 100 100)');
+document.getElementById('mh').setAttribute('transform','rotate('+m*6+' 100 100)');
+document.getElementById('sh').setAttribute('transform','rotate('+s*6+' 100 100)');}
+tick();setInterval(tick,1000);
+
+var KEY='velora.watches',RKEY='velora.requests';
+function load(k){try{return JSON.parse(localStorage.getItem(k))||[];}catch(e){return [];}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true;}catch(e){return false;}}
+var WATCHES=load(KEY),REQS=load(RKEY);
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]});}
+function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(n);}
+var list=document.getElementById('list'),reqs=document.getElementById('reqs'),msg=document.getElementById('msg');
+function render(){
+list.innerHTML=WATCHES.length?WATCHES.map(function(w,i){
+var img=w.image?'<img src="'+esc(w.image)+'" alt="'+esc(w.brand+' '+w.name)+'">':'<svg viewBox="0 0 100 100" width="50%" aria-hidden="true"><circle cx="50" cy="50" r="30" fill="none" stroke="#cfae6a" stroke-width="2"/><path d="M50 50V32M50 50l12 6" stroke="#cfae6a" stroke-width="2" stroke-linecap="round"/></svg>';
+return '<article class="card"><div class="img">'+img+'</div><div class="body"><div class="brand">'+esc(w.brand)+'</div><h3>'+esc(w.name)+'</h3><p>'+esc(w.desc)+'</p><div class="row"><span class="price">'+money(w.price)+'</span><button class="btn" data-i="'+i+'">Buy</button></div></div></article>';}).join(''):'<p class="empty">No watches yet. Add your first one below.</p>';
+reqs.innerHTML=REQS.length?REQS.map(function(r){return '<div class="req"><span>'+esc(r.watch)+'<br><small>'+esc(r.when)+'</small></span><span class="price">'+money(r.price)+'</span></div>';}).join(''):'<p class="note" style="margin:0">No requests yet.</p>';
+}
+render();
+list.addEventListener('click',function(e){
+var b=e.target.closest('button[data-i]');if(!b)return;
+var w=WATCHES[b.dataset.i];if(!w)return;
+REQS.unshift({watch:w.brand+' '+w.name,price:w.price,when:new Date().toLocaleString()});
+save(RKEY,REQS);render();
+document.getElementById('requests').scrollIntoView({behavior:'smooth'});
+});
+function shrink(file,cb){
+var r=new FileReader();
+r.onload=function(){var im=new Image();im.onload=function(){
+var m=700,k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');
+c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);
+c.getContext('2d').drawImage(im,0,0,c.width,c.height);cb(c.toDataURL('image/jpeg',.8));};
+im.onerror=function(){cb('');};im.src=r.result;};
+r.onerror=function(){cb('');};r.readAsDataURL(file);
+}
+document.getElementById('addForm').addEventListener('submit',function(e){
+e.preventDefault();var f=e.target,file=f.photo.files[0];
+function done(img){
+WATCHES.push({brand:f.brand.value.trim(),name:f.name.value.trim(),price:Number(f.price.value),desc:f.desc.value.trim(),image:img});
+var ok=save(KEY,WATCHES);render();f.reset();
+msg.textContent=ok?'Added to the collection.':'Added, but this browser could not save it for next time.';
+document.getElementById('collection').scrollIntoView({behavior:'smooth'});
+}
+if(file){shrink(file,done);}else{done('');}
+});
+})();
+</script>
+</body>
+</html>
